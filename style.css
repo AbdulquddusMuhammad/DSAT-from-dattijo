@@ -18,7 +18,47 @@ body {
   padding: 1rem 2rem;
   display: grid;
   grid-template-rows: 10fr 80fr 10fr;
+  position: relative;
 }
+/* calculator */
+/* calculator */
+/* calculator */
+.calc-container {
+  position: absolute;
+  right: 8rem;
+  top: 8rem;
+  z-index: 9;
+  background-color: red;
+  height: 200px;
+  width: 175px;
+  display: none;
+}
+
+.calc-container.active {
+  display: block;
+}
+
+.calc-container * {
+  font-family: serif;
+}
+
+.calc-screen {
+  background-color: #f0f0f0;
+  height: auto;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  padding: 10px;
+}
+
+.calc-button {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  height: auto;
+}
+/* calculator */
 
 nav {
   display: flex;

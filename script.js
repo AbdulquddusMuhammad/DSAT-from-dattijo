@@ -7,6 +7,8 @@ const prevQuestion = document.querySelector(".prev-question");
 const visQueNum = document.querySelector(".q-number");
 const pagQueNum = document.querySelector(".page-no-down");
 const allQueNum = document.querySelector(".all-question");
+const calculatorToDispaly = document.querySelector(".calc-container");
+const calculatorIcon = document.querySelector(".calculator");
 
 visQueNum.textContent = currentQuestionNumber;
 pagQueNum.textContent = currentQuestionNumber;
@@ -146,6 +148,8 @@ options.forEach((option) => {
 // ////////////////////////////////////////////////////Functions////////////////////////////////////////////////
 
 // change calculator and reference and pen and more//
+function endOfQuiz() {}
+
 function changeIcons() {
   const calculator = document.querySelector(".calculator");
   const reference = document.querySelector(".reference");
@@ -230,4 +234,49 @@ prevQuestion.addEventListener("click", () => {
     });
   }
   changeIcons();
+});
+
+// //////////////////////////////// Display Calculator ////////////////////////////////
+
+calculatorIcon.addEventListener("click", () => {
+  calculatorToDispaly.classList.toggle("active");
+});
+
+// //////////////////////////////// calculator ///////////////////////////
+// //////////////////////////////// calculator ///////////////////////////
+
+const calculatorButtons = document.querySelectorAll(".calc-btns");
+const inputScreen = document.querySelector(".calc-operation");
+const resultScreen = document.querySelector(".calc-typed");
+const equalsButton = document.querySelector(".calc-button-calculate");
+const clearButton = document.querySelector(".calc-button-clear");
+const backspace = document.querySelector(".calc-button-backspace");
+
+backspace.addEventListener("click", () => {
+  console.log("bacl space clicked");
+  inputScreen.value = inputScreen.value.slice(0, -1);
+});
+
+clearButton.addEventListener("click", () => {
+  inputScreen.value = "";
+  resultScreen.value = "";
+});
+
+calculatorButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    console.log(button.innerText);
+    inputScreen.value += button.innerText;
+  });
+});
+
+const operations = document.querySelectorAll(".calc-button-op");
+operations.forEach((operation) => {
+  operation.addEventListener("click", () => {
+    console.log(operation.innerText);
+    inputScreen.value += " " + operation.innerText + " ";
+  });
+});
+
+equalsButton.addEventListener("click", () => {
+  resultScreen.value = eval(inputScreen.value);
 });

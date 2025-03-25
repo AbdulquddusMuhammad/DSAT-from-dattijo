@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator App</title>
+    <style>
+      .calc-container {
+        background-color: #ffffff;
+        width: 300px;
+        height: 400px;
+        margin: 0 auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        padding: 1rem;
+      }
+
+      .calc-screen {
+        background-color: #f0f0f0;
+        height: 100px;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        padding: 10px;
+      }
+
+      .calc-button {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        padding: 10px;
+        background-color: #f0f0f0;
+        height: 250px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calc-container">
+      <div class="calc-screen">
+        <input type="text" class="calc-operation" disabled />
+        <!-- This input is disabled to display the result and prevent user interaction -->
+        <input type="text" class="calc-typed" disabled />
+      </div>
+      <div class="calc-button">
+        <button class="calc-button-clear">C</button>
+        <button class="calc-button-backspace">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#434343"><path d="m456-320 104-104 104 104 56-56-104-104 104-104-56-56-104 104-104-104-56 56 104 104-104 104 56 56Zm-96 160q-19 0-36-8.5T296-192L80-480l216-288q11-15 28-23.5t36-8.5h440q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H360ZM180-480l180 240h440v-480H360L180-480Zm400 0Z" /></svg>
+        </button>
+        <button class="calc-op calc-button-op">%</button>
+        <button class="calc-op calc-button-op">/</button>
+        <button class="calc-btns calc-button-num">7</button>
+        <button class="calc-btns calc-button-num">8</button>
+        <button class="calc-btns calc-button-num">9</button>
+        <button class="calc-button-op">*</button>
+        <button class="calc-btns calc-button-num">4</button>
+        <button class="calc-btns calc-button-num">5</button>
+        <button class="calc-btns calc-button-num">6</button>
+        <button class="calc-op calc-button-op">-</button>
+        <button class="calc-btns calc-button-num">1</button>
+        <button class="calc-btns calc-button-num">2</button>
+        <button class="calc-btns calc-button-num">3</button>
+        <button class="calc-op calc-button-op">+</button>
+        <button class="calc-btns calc-button-num">0</button>
+        <button class="calc-btns calc-button-num">.</button>
+        <button class="calc-op calc-button-calculate">=</button>
+      </div>
+    </div>
+    <script>
+      const calculatorButtons = document.querySelectorAll(".calc-btns");
+      const inputScreen = document.querySelector(".calc-operation");
+      const resultScreen = document.querySelector(".calc-typed");
+      const equalsButton = document.querySelector(".calc-button-calculate");
+      const clearButton = document.querySelector(".calc-button-clear");
+      const backspace = document.querySelector(".calc-button-backspace");
+
+      backspace.addEventListener("click", () => {
+        console.log("bacl space clicked");
+        inputScreen.value = inputScreen.value.slice(0, -1);
+      });
+
+      clearButton.addEventListener("click", () => {
+        inputScreen.value = "";
+        resultScreen.value = "";
+      });
+
+      calculatorButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          console.log(button.innerText);
+          inputScreen.value += button.innerText;
+        });
+      });
+
+      const operations = document.querySelectorAll(".calc-button-op");
+      operations.forEach((operation) => {
+        operation.addEventListener("click", () => {
+          console.log(operation.innerText);
+          inputScreen.value += " " + operation.innerText + " ";
+        });
+      });
+
+      equalsButton.addEventListener("click", () => {
+        resultScreen.value = eval(inputScreen.value);
+      });
+    </script>
+  </body>
+</html>
